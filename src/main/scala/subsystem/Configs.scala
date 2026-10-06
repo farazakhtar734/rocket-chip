@@ -385,3 +385,7 @@ class WithCloneCluster(
   case TLNetworkTopologyLocated(InCluster(`clusterId`)) => site(TLNetworkTopologyLocated(InCluster(cloneClusterId)))
   case PossibleTileLocations => up(PossibleTileLocations) :+ InCluster(clusterId)
 })
+
+class WithAsIdBits(n: Int) extends Config((site, here, up) => {
+  case freechips.rocketchip.rocket.ASIdBits => n
+})

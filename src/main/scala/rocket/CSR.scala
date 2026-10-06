@@ -150,6 +150,8 @@ class PTBR(implicit p: Parameters) extends CoreBundle()(p) {
     case 64 => (4, 16)
   }
   require(!usingVM || modeBits + maxASIdBits + maxPAddrBits - pgIdxBits == xLen)
+  require(!usingVM || (asIdBits >= 0 && asIdBits <= maxASIdBits),
+    s"ASIdBits ($asIdBits) must be in [0, $maxASIdBits] for XLEN=$xLen")
 
   val mode = UInt(modeBits.W)
   val asid = UInt(maxASIdBits.W)
